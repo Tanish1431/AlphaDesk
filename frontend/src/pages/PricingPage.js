@@ -13,20 +13,20 @@ function PricingPage() {
         <div className="pricing-grid mb-8">
           <div className="pricing-card">
             <h3>Equity Delivery</h3>
-            <div className="pricing-amount">$0<span>/order</span></div>
+            <div className="pricing-amount">₹0<span>/order</span></div>
             <p className="text-secondary mb-6">For long-term investments</p>
             <ul className="pricing-features">
               <li>Zero brokerage on equity investments</li>
               <li>No account maintenance fees</li>
-              <li>Free mutual fund investments</li>
-              <li>Basic charts and screeners</li>
+              <li>Free direct mutual fund investments</li>
+              <li>Basic charts and market screeners</li>
             </ul>
             <Link to="/signup" className="btn btn-secondary" style={{width: "100%", marginTop: "16px"}}>Open Free Account</Link>
           </div>
           
           <div className="pricing-card featured">
             <h3>Intraday & F&O</h3>
-            <div className="pricing-amount">$2.99<span>/order</span></div>
+            <div className="pricing-amount">₹20<span>/order</span></div>
             <p className="text-secondary mb-6">For active traders</p>
             <ul className="pricing-features">
               <li>Flat fee per executed order</li>

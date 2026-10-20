@@ -342,3 +342,255 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ========================================================
+   AUTHENTICATION PAGES (Login / Signup)
+   ======================================================== */
+.auth-page {
+  min-height: calc(100vh - var(--header-height, 65px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  background-color: var(--color-bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-header h1 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.auth-header p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: var(--text-sm);
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-hint {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border-light);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.auth-footer a {
+  color: var(--color-primary);
+  font-weight: var(--weight-medium);
+}
+
+/* ========================================================
+   PUBLIC PAGES COMMON UTILITIES (About, Pricing, Products, Support)
+   ======================================================== */
+.section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin: 0 auto 50px auto;
+  max-width: 720px;
+}
+
+.section-header h1 {
+  font-size: 2.25rem;
+  font-weight: var(--weight-bold);
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.section-header p {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+/* Pricing Page */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+
+.pricing-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pricing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pricing-card.featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-md);
+  position: relative;
+}
+
+.pricing-card h3 {
+  font-size: 1.25rem;
+  font-weight: var(--weight-semibold);
+  margin-bottom: 12px;
+}
+
+.pricing-amount {
+  font-size: 2.75rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.pricing-amount span {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.pricing-features li {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-features li::before {
+  content: "✓";
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+/* Products Page Features */
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin: 60px 0;
+  padding: 40px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.feature-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-row-content {
+  flex: 1;
+}
+
+.feature-row-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+  font-weight: var(--weight-semibold);
+}
+
+.feature-row-content p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.feature-row-visual {
+  flex: 1;
+  background: var(--color-bg);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--weight-medium);
+}
+
+/* Interactive Cards & CTAs */
+.card-interactive {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.cta-section {
+  text-align: center;
+  padding: 50px 30px;
+}
+
+.cta-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+}

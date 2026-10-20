@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function TopBar({ toggleSidebar }) {
-  // Using fixed mock data for the indices for now
-  const indices = [
-    { name: "S&P 500", value: "5,180.74", change: "+44.15 (0.86%)", isUp: true },
-    { name: "NASDAQ", value: "16,332.56", change: "+176.23 (1.09%)", isUp: true }
-  ];
+  const [nifty, setNifty] = useState({ val: 22514.65, chg: 120.40, pct: 0.54 });
+  const [sensex, setSensex] = useState({ val: 74221.05, chg: 351.10, pct: 0.47 });
+  const [bankNifty, setBankNifty] = useState({ val: 48012.30, chg: -45.20, pct: -0.09 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      // Natural micro-fluctuation every 2 seconds
+      setNifty(prev => {
+        const delta = (Math.random() - 0.48) * 1.5;
+        const newVal = +(prev.val + delta).toFixed(2);
+        const newChg = +(prev.chg + delta).toFixed(2);
+        return { val: newVal, chg: newChg, pct: +((newChg / 22394) * 100).toFixed(2) };
+      });
+      setSensex(prev => {
+        const delta = (Math.random() - 0.48) * 4.2;
+        const newVal = +(prev.val + delta).toFixed(2);
+        const newChg = +(prev.chg + delta).toFixed(2);
+        return { val: newVal, chg: newChg, pct: +((newChg / 73870) * 100).toFixed(2) };
+      });
+      setBankNifty(prev => {
+        const delta = (Math.random() - 0.51) * 2.8;
+        const newVal = +(prev.val + delta).toFixed(2);
+        const newChg = +(prev.chg + delta).toFixed(2);
+        return { val: newVal, chg: newChg, pct: +((newChg / 48057) * 100).toFixed(2) };
+      });
+    }, 2000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <header className="dashboard-topbar">
@@ -25,18 +49,28 @@ function TopBar({ toggleSidebar }) {
 
         <div className="market-index">
           <span className="index-name">NIFTY 50</span>
-          <span className="index-value">22,514.65</span>
-          <span className="index-change text-success">+120.40 (0.54%)</span>
+          <span className="index-value font-mono">{nifty.val.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+          <span className={`index-change ${nifty.chg >= 0 ? 'text-success' : 'text-danger'}`}>
+            {nifty.chg >= 0 ? '+' : ''}{nifty.chg.toFixed(2)} ({nifty.pct >= 0 ? '+' : ''}{nifty.pct.toFixed(2)}%)
+          </span>
         </div>
         <div className="market-index">
           <span className="index-name">SENSEX</span>
-          <span className="index-value">74,221.05</span>
-          <span className="index-change text-success">+351.10 (0.47%)</span>
+          <span className="index-value font-mono">{sensex.val.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+          <span className={`index-change ${sensex.chg >= 0 ? 'text-success' : 'text-danger'}`}>
+            {sensex.chg >= 0 ? '+' : ''}{sensex.chg.toFixed(2)} ({sensex.pct >= 0 ? '+' : ''}{sensex.pct.toFixed(2)}%)
+          </span>
         </div>
         <div className="market-index">
           <span className="index-name">NIFTY BANK</span>
-          <span className="index-value">48,012.30</span>
-          <span className="index-change text-danger">-45.20 (-0.09%)</span>
+          <span className="index-value font-mono">{bankNifty.val.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+          <span className={`index-change ${bankNifty.chg >= 0 ? 'text-success' : 'text-danger'}`}>
+            {bankNifty.chg >= 0 ? '+' : ''}{bankNifty.chg.toFixed(2)} ({bankNifty.pct >= 0 ? '+' : ''}{bankNifty.pct.toFixed(2)}%)
+          </span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginLeft: "12px", fontSize: "11px", color: "var(--color-text-muted)" }}>
+          <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-success)", display: "inline-block", boxShadow: "0 0 6px rgba(76, 175, 80, 0.6)" }}></span>
+          <span>LIVE MARKET</span>
         </div>
       </div>
 

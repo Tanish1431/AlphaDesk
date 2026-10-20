@@ -2,37 +2,36 @@ import React, { useMemo } from "react";
 import { DoughnutChart } from "../../components/dashboard/DoughnutChart";
 import PortfolioHealth from "../../components/dashboard/PortfolioHealth";
 import TradeCopilot from "../../components/dashboard/TradeCopilot";
+import MarketMovers from "../../components/dashboard/MarketMovers";
 import { usePortfolio } from "../../context/PortfolioContext";
 import { formatINR } from "../../utils/formatINR";
 
 function OverviewPage() {
-  const { holdings, funds, orders, loading } = usePortfolio();
+  const { holdings, funds, orders, instruments, loading } = usePortfolio();
 
   const { totalHoldingsValue, dayPnL, dayPnLPct } = useMemo(() => {
     let current = 0;
-    let invested = 0;
-    let prevDayValue = 0;
+    let computedDayPnL = 0;
 
     holdings.forEach(h => {
-       const curVal = h.price * h.qty;
-       const invVal = h.avg * h.qty;
-       // We can approximate day chg if we have the actual dayChange from the instrument.
-       // Assuming day is passed or calculated, for now let's just mock day PnL if not available
+       const inst = instruments.find(i => i.symbol === h.name);
+       const ltp = inst ? inst.ltp : h.price;
+       const dayChange = inst ? inst.dayChange : (ltp * 0.005);
+       
+       const curVal = ltp * h.qty;
+
        current += curVal;
-       invested += invVal;
-       // Mocking day PnL based on a static 0.45% for the sake of the dashboard
-       // In reality, this should be sum of (h.qty * h.dayChange)
+       computedDayPnL += (h.qty * dayChange);
     });
 
-    const dPnL = current * 0.0045; // 0.45% mock day return
-    const dPnLPct = 0.45;
+    const dPnLPct = current > 0 ? (computedDayPnL / (current - computedDayPnL)) * 100 : 0;
 
     return {
         totalHoldingsValue: current,
-        dayPnL: dPnL,
+        dayPnL: computedDayPnL,
         dayPnLPct: dPnLPct
     };
-  }, [holdings]);
+  }, [holdings, instruments]);
 
   const totalValue = totalHoldingsValue + funds.availableBalance;
   // Let's assume the previous total was totalValue - dayPnL
@@ -110,6 +109,9 @@ function OverviewPage() {
           </div>
         </div>
       </div>
+
+      {/* Zerodha & Groww inspired: Live Market Movers (Top Gainers / Losers) */}
+      <MarketMovers instruments={instruments} />
 
       <div className="grid-2">
         <div className="card">

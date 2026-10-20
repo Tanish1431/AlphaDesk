@@ -52,7 +52,7 @@ function TradeModal() {
   
   // Use CSS styles instead of inline for modal overlay/container
   return (
-    <div className="trade-overlay" onClick={(e) => { if (e.target === e.currentTarget) closeTradeModal(); }}>
+    <div className="modal-overlay" onClick={(e) => { if (e.target === e.currentTarget) closeTradeModal(); }}>
       <div className="trade-modal">
         <div className="trade-modal-header">
           <div className="trade-modal-title">

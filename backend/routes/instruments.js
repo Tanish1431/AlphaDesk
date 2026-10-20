@@ -14,9 +14,25 @@ router.get("/", async (req, res) => {
       query.sector = sector;
     }
 
-    // Don't return the full candle history in the list view to keep it fast
-    const instruments = await Instrument.find(query).select("-candles").sort({ symbol: 1 });
-    res.json(instruments);
+    // Fetch instruments
+    let instruments = await Instrument.find(query).select("-candles").sort({ symbol: 1 });
+
+    // Simulate subtle real-time market micro-ticks (±0.05% to ±0.20%)
+    const updated = instruments.map((inst) => {
+      const obj = inst.toObject();
+      const jitterFactor = (Math.random() - 0.49) * 0.003; // small natural jitter
+      const newLtp = +(obj.ltp * (1 + jitterFactor)).toFixed(2);
+      const dayChange = +(newLtp - obj.prevClose).toFixed(2);
+      const dayChangePct = +((dayChange / obj.prevClose) * 100).toFixed(2);
+      return {
+        ...obj,
+        ltp: newLtp,
+        dayChange,
+        dayChangePct,
+      };
+    });
+
+    res.json(updated);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch instruments", error: error.message });
   }

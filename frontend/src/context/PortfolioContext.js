@@ -24,7 +24,6 @@ export const PortfolioProvider = ({ children }) => {
   const [instruments, setInstruments] = useState([]);
   
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const fetchHoldings = useCallback(async () => {
     try {
@@ -62,12 +61,12 @@ export const PortfolioProvider = ({ children }) => {
     }
   }, []);
 
-  const fetchInstruments = useCallback(async () => {
+  const fetchInstruments = useCallback(async (isSilent = false) => {
     try {
       const res = await axios.get(`${API_BASE}/instruments`);
       setInstruments(res.data);
     } catch (err) {
-      console.error("Failed to fetch instruments", err);
+      if (!isSilent) console.error("Failed to fetch instruments", err);
     }
   }, []);
 
@@ -78,14 +77,21 @@ export const PortfolioProvider = ({ children }) => {
       fetchPositions(),
       fetchOrders(),
       fetchFunds(),
-      fetchInstruments()
+      fetchInstruments(false)
     ]);
     setLoading(false);
   }, [fetchHoldings, fetchPositions, fetchOrders, fetchFunds, fetchInstruments]);
 
   useEffect(() => {
     refreshAll();
-  }, [refreshAll]);
+
+    // Live Market Ticker: Refresh instrument ticks smoothly every 1.5 seconds
+    const interval = setInterval(() => {
+      fetchInstruments(true);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [refreshAll, fetchInstruments]);
 
   const placeOrder = async (orderData) => {
     try {
@@ -102,7 +108,7 @@ export const PortfolioProvider = ({ children }) => {
   return (
     <PortfolioContext.Provider value={{
       holdings, positions, orders, funds, instruments,
-      loading, error,
+      loading,
       refreshAll, placeOrder
     }}>
       {children}
