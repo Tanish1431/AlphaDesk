@@ -11,7 +11,8 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3002/api/auth/login", {
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3002/api";
+      const res = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

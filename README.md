@@ -207,6 +207,69 @@ npm start
 
 ---
 
+## 🌐 Deployment (Render — Free Tier)
+
+### Step 1: Set Up MongoDB Atlas (Free Cloud Database)
+1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) → Create a free account
+2. Create a **Free Shared Cluster** (M0 tier, 512 MB)
+3. Under **Database Access** → Add a database user with password
+4. Under **Network Access** → Add `0.0.0.0/0` (allow from anywhere)
+5. Click **Connect** → **Drivers** → Copy your connection string:
+   ```
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/alphadesks
+   ```
+
+### Step 2: Deploy Backend (Web Service)
+1. Go to [Render Dashboard](https://dashboard.render.com) → **New** → **Web Service**
+2. Connect your GitHub repo (`Tanish1431/AlphaDesk`)
+3. Configure:
+   - **Name**: `alphadesks-api`
+   - **Root Directory**: `backend`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node server.js`
+   - **Plan**: Free
+4. Add **Environment Variables**:
+   | Key | Value |
+   |:----|:------|
+   | `MONGO_URL` | Your MongoDB Atlas connection string |
+   | `JWT_SECRET` | Any random secure string |
+   | `NODE_ENV` | `production` |
+5. Click **Deploy** → Wait for it to go live
+6. Copy your backend URL (e.g., `https://alphadesks-api.onrender.com`)
+
+### Step 3: Seed the Database (One-Time)
+After backend is deployed, seed from your local machine:
+```bash
+MONGO_URL="your_atlas_connection_string" node backend/seed/seed.js
+```
+
+### Step 4: Deploy Frontend (Static Site)
+1. Go to Render → **New** → **Static Site**
+2. Connect the same GitHub repo
+3. Configure:
+   - **Name**: `alphadesks`
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `build`
+4. Add **Environment Variable**:
+   | Key | Value |
+   |:----|:------|
+   | `REACT_APP_API_URL` | `https://alphadesks-api.onrender.com/api` |
+5. Under **Redirects/Rewrites** → Add a rule:
+   - Source: `/*`, Destination: `/index.html`, Type: **Rewrite**
+6. Click **Deploy**
+
+### Step 5: Update Backend CORS
+Go back to your backend service environment variables and add:
+| Key | Value |
+|:----|:------|
+| `FRONTEND_URL` | `https://alphadesks.onrender.com` |
+
+> ⚠️ **Note**: Render free tier services spin down after 15 minutes of inactivity. The first request after inactivity may take ~30 seconds to cold-start.
+
+---
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
 

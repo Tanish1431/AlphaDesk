@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import axios from "axios";
 import TradeContext from "./TradeContext";
 
-const API_BASE = "http://localhost:3002/api";
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3002/api";
 
 const PortfolioContext = createContext(null);
 
