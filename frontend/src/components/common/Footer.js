@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AlphaLogo from "./AlphaLogo";
 
 function Footer() {
   return (
@@ -7,9 +8,9 @@ function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <div className="footer-brand">
-              <span className="brand-icon">A</span>
-              AlphaDesks
+            <div className="footer-brand" style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+              <AlphaLogo size={28} />
+              <span style={{ fontWeight: "700", fontSize: "18px" }}>AlphaDesks</span>
             </div>
             <p className="footer-desc">
               A modern investment platform built for the next generation of
@@ -49,6 +50,9 @@ function Footer() {
           <p>
             Member FINRA / SIPC. Securities offered through AlphaDesks Financial LLC.
           </p>
+          <div style={{ marginTop: "14px", fontStyle: "italic", fontWeight: "300", letterSpacing: "0.5px", fontSize: "13px", color: "var(--color-text-muted)" }}>
+            Made by <span style={{ color: "var(--color-primary)", fontWeight: "400" }}>Tanish</span>
+          </div>
         </div>
 
         <div className="footer-disclaimer">

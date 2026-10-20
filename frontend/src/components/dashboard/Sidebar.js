@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import AlphaLogo from "../common/AlphaLogo";
 
 function Sidebar({ isOpen, onClose }) {
   const navigate = useNavigate();
@@ -42,8 +43,9 @@ function Sidebar({ isOpen, onClose }) {
   return (
     <aside className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="sidebar-logo">
-        <Link to="/dashboard" onClick={onClose} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", padding: "var(--space-2) 0" }}>
-          <img src="/logo.png" alt="Alpha Logo" style={{ height: "48px", objectFit: "contain" }} />
+        <Link to="/dashboard" onClick={onClose} style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", textDecoration: "none" }}>
+          <AlphaLogo size={32} />
+          <span style={{ fontWeight: "700", fontSize: "18px", color: "var(--color-text)", letterSpacing: "-0.5px" }}>AlphaDesks</span>
         </Link>
       </div>
 
@@ -88,6 +90,10 @@ function Sidebar({ isOpen, onClose }) {
             <div className="sidebar-user-email">Log out</div>
           </div>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: "var(--color-text-muted)"}}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </div>
+
+        <div style={{ textAlign: "center", padding: "12px 0 4px 0", fontSize: "11px", fontStyle: "italic", fontWeight: "300", letterSpacing: "0.5px", color: "var(--color-text-muted)" }}>
+          Made by <span style={{ color: "var(--color-primary)", fontWeight: "400" }}>Tanish</span>
         </div>
       </div>
     </aside>

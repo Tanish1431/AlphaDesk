@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AlphaLogo from "./AlphaLogo";
 
 function Navbar() {
   const location = useLocation();
@@ -15,9 +16,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-brand">
-          <span className="brand-icon">A</span>
-          AlphaDesks
+        <Link to="/" className="navbar-brand" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <AlphaLogo size={32} />
+          <span style={{ fontWeight: "700", letterSpacing: "-0.5px" }}>AlphaDesks</span>
         </Link>
 
         <ul className="navbar-links">

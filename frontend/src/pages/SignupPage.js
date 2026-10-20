@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AlphaLogo from "../components/common/AlphaLogo";
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -32,9 +33,9 @@ function SignupPage() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <Link to="/" style={{display: "inline-block", marginBottom: "24px"}}>
-            <div style={{display: "flex", alignItems: "center", gap: "8px", fontWeight: "bold", fontSize: "1.25rem", color: "var(--color-primary)"}}>
-              <span className="brand-icon" style={{width: "28px", height: "28px", background: "var(--color-accent)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px", fontSize: "14px"}}>A</span>
+          <Link to="/" style={{display: "inline-block", marginBottom: "20px"}}>
+            <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", fontWeight: "bold", fontSize: "1.35rem", color: "var(--color-text)"}}>
+              <AlphaLogo size={32} />
               AlphaDesks
             </div>
           </Link>
@@ -67,6 +68,9 @@ function SignupPage() {
 
         <div className="auth-footer">
           Already have an account? <Link to="/login">Log in</Link>
+          <div style={{ marginTop: "16px", fontStyle: "italic", fontWeight: "300", letterSpacing: "0.5px", fontSize: "12px", color: "var(--color-text-muted)" }}>
+            Made by <span style={{ color: "var(--color-primary)", fontWeight: "400" }}>Tanish</span>
+          </div>
         </div>
       </div>
     </div>
