@@ -90,8 +90,11 @@ function TaxCenterPage() {
 
       <div className="card" style={{marginTop: "var(--space-6)"}}>
         <h3 style={{ marginBottom: "var(--space-4)", fontSize: "var(--text-lg)" }}>Unrealized Gains Breakdown</h3>
+        <div className="table-scroll-hint">
+          <span>⇄ Swipe horizontally to see all columns</span>
+        </div>
         <div className="table-responsive">
-          <table className="table">
+          <table className="table table-sticky-first">
             <thead>
               <tr>
                 <th>Instrument</th>

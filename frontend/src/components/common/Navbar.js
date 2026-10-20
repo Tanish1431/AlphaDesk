@@ -35,25 +35,59 @@ function Navbar() {
         </ul>
 
         <div className="navbar-actions">
-          <Link to="/login" className="btn btn-ghost">
+          <Link to="/login" className="btn btn-ghost hide-mobile">
             Log in
           </Link>
-          <Link to="/signup" className="btn btn-primary">
+          <Link to="/signup" className="btn btn-primary hide-mobile">
             Get Started
           </Link>
           <button
             className="navbar-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation"
+            style={{ cursor: "pointer", padding: "6px", color: "var(--color-text)" }}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+            {mobileOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+
+      {mobileOpen && (
+        <div className="navbar-mobile-menu">
+          <ul className="navbar-mobile-links">
+            {links.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className={location.pathname === link.to ? "active" : ""}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="navbar-mobile-actions">
+            <Link to="/login" className="btn btn-secondary" style={{ flex: 1, textAlign: "center" }} onClick={() => setMobileOpen(false)}>
+              Log in
+            </Link>
+            <Link to="/signup" className="btn btn-primary" style={{ flex: 1, textAlign: "center" }} onClick={() => setMobileOpen(false)}>
+              Get Started
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

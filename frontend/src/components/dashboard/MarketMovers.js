@@ -21,7 +21,7 @@ export default function MarketMovers({ instruments }) {
 
   return (
     <div className="card" style={{ marginBottom: "var(--space-6)" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--space-4)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px", marginBottom: "var(--space-4)" }}>
         <div>
           <h3 style={{ fontSize: "var(--text-lg)", fontWeight: "600", margin: 0 }}>Market Movers Today</h3>
           <span style={{ fontSize: "var(--text-xs)", color: "var(--color-text-muted)" }}>NSE Top Movers (Live Ticker)</span>
@@ -33,7 +33,7 @@ export default function MarketMovers({ instruments }) {
             onClick={() => setTab("gainers")}
             style={{
               border: "none",
-              padding: "4px 12px",
+              padding: "5px 12px",
               borderRadius: "4px",
               fontSize: "12px",
               fontWeight: "600",
@@ -50,7 +50,7 @@ export default function MarketMovers({ instruments }) {
             onClick={() => setTab("losers")}
             style={{
               border: "none",
-              padding: "4px 12px",
+              padding: "5px 12px",
               borderRadius: "4px",
               fontSize: "12px",
               fontWeight: "600",
@@ -66,7 +66,7 @@ export default function MarketMovers({ instruments }) {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "12px" }}>
+      <div className="market-movers-grid">
         {activeList.map((item) => {
           const isUp = item.dayChange >= 0;
           return (

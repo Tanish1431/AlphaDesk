@@ -24,12 +24,12 @@ function DashboardLayout() {
         <div className="dashboard-main">
           <TopBar toggleSidebar={toggleSidebar} />
           
-          <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-            <div className="dashboard-content" style={{ overflowY: "auto", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div>
+          <div className="dashboard-content-wrapper">
+            <div className="dashboard-content">
+              <div style={{ width: "100%", minWidth: 0 }}>
                 <Outlet />
               </div>
-              <div style={{ textAlign: "center", padding: "28px 0 16px 0", fontSize: "12px", fontStyle: "italic", fontWeight: "300", letterSpacing: "0.5px", color: "var(--color-text-muted)", borderTop: "1px solid var(--color-border-light)", marginTop: "32px" }}>
+              <div style={{ textAlign: "center", padding: "24px 0 12px 0", fontSize: "12px", fontStyle: "italic", fontWeight: "300", letterSpacing: "0.5px", color: "var(--color-text-muted)", borderTop: "1px solid var(--color-border-light)", marginTop: "28px" }}>
                 Made by <span style={{ color: "var(--color-primary)", fontWeight: "400" }}>Tanish</span>
               </div>
             </div>

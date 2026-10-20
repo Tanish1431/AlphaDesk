@@ -15,20 +15,23 @@ function FundsPage() {
       </div>
 
       <div className="grid-2">
-        <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "var(--space-8)" }}>
-          <h2 style={{ fontSize: "var(--text-3xl)", marginBottom: "var(--space-2)", fontFamily: "var(--font-mono)" }}>{formatINR(funds.availableBalance)}</h2>
-          <p className="text-secondary" style={{ marginBottom: "var(--space-6)" }}>Available Margin</p>
+        <div className="card" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "var(--space-6)" }}>
+          <h2 style={{ fontSize: "clamp(1.6rem, 5vw, 2.25rem)", marginBottom: "var(--space-2)", fontFamily: "var(--font-mono)", textAlign: "center" }}>{formatINR(funds.availableBalance)}</h2>
+          <p className="text-secondary" style={{ marginBottom: "var(--space-5)" }}>Available Margin</p>
           
-          <div style={{ display: "flex", gap: "var(--space-4)" }}>
-            <button className="btn btn-primary" onClick={() => alert("Deposit feature coming soon.")}>Add Funds</button>
-            <button className="btn btn-secondary" onClick={() => alert("Withdraw feature coming soon.")}>Withdraw</button>
+          <div style={{ display: "flex", gap: "var(--space-3)", width: "100%", maxWidth: "320px" }}>
+            <button className="btn btn-primary" style={{ flex: 1 }} onClick={() => alert("Deposit feature coming soon.")}>Add Funds</button>
+            <button className="btn btn-secondary" style={{ flex: 1 }} onClick={() => alert("Withdraw feature coming soon.")}>Withdraw</button>
           </div>
         </div>
 
         <div className="card">
-          <h3 style={{ marginBottom: "var(--space-4)", fontSize: "var(--text-lg)" }}>Recent Transactions</h3>
+          <h3 style={{ marginBottom: "var(--space-3)", fontSize: "var(--text-lg)" }}>Recent Transactions</h3>
+          <div className="table-scroll-hint">
+            <span>⇄ Swipe horizontally to see all columns</span>
+          </div>
           <div className="table-responsive">
-            <table className="table">
+            <table className="table table-sticky-first">
               <thead>
                 <tr>
                   <th>Date</th>

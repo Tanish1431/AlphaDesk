@@ -15,8 +15,11 @@ function HoldingsPage() {
       </div>
 
       <div className="card">
+        <div className="table-scroll-hint">
+          <span>⇄ Swipe horizontally to see all columns</span>
+        </div>
         <div className="table-responsive">
-          <table className="table">
+          <table className="table table-sticky-first">
             <thead>
               <tr>
                 <th>Instrument</th>

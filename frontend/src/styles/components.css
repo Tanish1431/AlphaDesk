@@ -62,9 +62,23 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   padding: var(--space-6);
-  /* Use a subtle glow instead of heavy shadow */
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s, border-color 0.2s;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 16px 14px;
+    border-radius: var(--radius-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 14px 10px;
+  }
 }
 
 .card:hover {
@@ -113,15 +127,30 @@
 
 /* Tables */
 .table-responsive {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
 }
 
 .table {
   width: 100%;
+  min-width: 620px;
   margin-bottom: 0;
   color: var(--color-text);
   border-collapse: collapse;
+  white-space: nowrap;
 }
 
 .table th,
@@ -158,6 +187,24 @@
   font-family: var(--font-mono);
 }
 
+/* Sticky first column on mobile for effortless scanning */
+@media (max-width: 768px) {
+  .table-sticky-first th:first-child,
+  .table-sticky-first td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: var(--color-surface);
+    z-index: 2;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 10px;
+    font-size: 13px;
+  }
+}
+
 /* Trade Modal */
 .modal-overlay {
   position: fixed;
@@ -184,6 +231,22 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
+}
+
+@media (max-width: 480px) {
+  .trade-modal {
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
+
+  .trade-modal-header {
+    padding: 12px 14px;
+  }
+
+  .trade-modal-body {
+    padding: 14px 12px;
+  }
 }
 
 .trade-modal-header {
@@ -363,6 +426,17 @@
   border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .auth-header h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .auth-header {
@@ -583,6 +657,26 @@
 .card-interactive:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+/* Market Movers Responsive Grid */
+.market-movers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 540px) {
+  .market-movers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 340px) {
+  .market-movers-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cta-section {

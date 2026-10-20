@@ -85,8 +85,8 @@ function CommandPalette() {
   };
 
   return (
-    <div className="modal-overlay" onClick={() => setIsOpen(false)} style={{alignItems: "flex-start", paddingTop: "10vh", zIndex: 9999}}>
-      <div className="trade-modal" onClick={(e) => e.stopPropagation()} style={{maxWidth: "600px", background: "var(--color-surface)", border: "1px solid var(--color-border)", boxShadow: "0 20px 40px rgba(0,0,0,0.4)"}}>
+    <div className="modal-overlay" onClick={() => setIsOpen(false)} style={{alignItems: "flex-start", paddingTop: "8vh", zIndex: 9999, padding: "12px"}}>
+      <div className="trade-modal" onClick={(e) => e.stopPropagation()} style={{maxWidth: "600px", width: "100%", background: "var(--color-surface)", border: "1px solid var(--color-border)", boxShadow: "0 20px 40px rgba(0,0,0,0.25)"}}>
         <div style={{padding: "var(--space-4)", borderBottom: "1px solid var(--color-border)"}}>
            <input
              ref={inputRef}

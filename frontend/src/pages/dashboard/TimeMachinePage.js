@@ -117,18 +117,18 @@ function TimeMachinePage() {
 
       {analysis && (
           <div className="grid-2">
-             <div className="card" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "var(--space-8)"}}>
-                <h3 className="text-secondary" style={{marginBottom: "var(--space-2)"}}>If you invested {formatINR(investmentAmount)} in {analysis.instrument.symbol} {monthsAgo / 12} years ago</h3>
-                <p style={{marginBottom: "var(--space-6)"}}>At a price of {formatINR(analysis.pastPrice)}</p>
+             <div className="card" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "var(--space-6)"}}>
+                <h3 className="text-secondary" style={{marginBottom: "var(--space-2)", fontSize: "clamp(0.9rem, 2.5vw, 1.125rem)"}}>If you invested {formatINR(investmentAmount)} in {analysis.instrument.symbol} {monthsAgo / 12} years ago</h3>
+                <p style={{marginBottom: "var(--space-4)", fontSize: "var(--text-sm)"}}>At a price of {formatINR(analysis.pastPrice)}</p>
                 
-                <h2 style={{fontSize: "var(--text-4xl)", fontFamily: "var(--font-mono)", marginBottom: "var(--space-2)"}}>
+                <h2 style={{fontSize: "clamp(1.4rem, 4vw, 2.25rem)", fontFamily: "var(--font-mono)", marginBottom: "var(--space-2)", lineHeight: 1.3}}>
                     It would be worth {formatINR(analysis.currentVal)}
                 </h2>
                 
-                <div style={{fontSize: "var(--text-xl)", fontWeight: "500", marginTop: "var(--space-4)"}} className={`text-${analysis.profit >= 0 ? 'success' : 'danger'}`}>
+                <div style={{fontSize: "clamp(1.1rem, 3vw, 1.25rem)", fontWeight: "500", marginTop: "var(--space-3)"}} className={`text-${analysis.profit >= 0 ? 'success' : 'danger'}`}>
                     {analysis.profit >= 0 ? '+' : ''}{formatINR(analysis.profit)} ({analysis.profitPct.toFixed(2)}%)
                 </div>
-                <div className="text-muted" style={{marginTop: "var(--space-2)"}}>
+                <div className="text-muted" style={{marginTop: "var(--space-2)", fontSize: "var(--text-sm)"}}>
                     {analysis.annualizedReturn.toFixed(2)}% CAGR
                 </div>
              </div>

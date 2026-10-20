@@ -41,13 +41,38 @@ function Sidebar({ isOpen, onClose }) {
   ];
 
   return (
-    <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-      <div className="sidebar-logo">
-        <Link to="/dashboard" onClick={onClose} style={{ display: "flex", alignItems: "center", gap: "10px", width: "100%", textDecoration: "none" }}>
-          <AlphaLogo size={32} />
-          <span style={{ fontWeight: "700", fontSize: "18px", color: "var(--color-text)", letterSpacing: "-0.5px" }}>AlphaDesks</span>
-        </Link>
-      </div>
+    <>
+      <div 
+        className={`sidebar-backdrop ${isOpen ? "open" : ""}`} 
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+        <div className="sidebar-logo" style={{ justifyContent: "space-between" }}>
+          <Link to="/dashboard" onClick={onClose} style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+            <AlphaLogo size={32} />
+            <span style={{ fontWeight: "700", fontSize: "18px", color: "var(--color-text)", letterSpacing: "-0.5px" }}>AlphaDesks</span>
+          </Link>
+          <button
+            onClick={onClose}
+            className="hide-desktop"
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "6px",
+              color: "var(--color-text-muted)",
+              display: "flex",
+              alignItems: "center"
+            }}
+            aria-label="Close menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
 
       <div className="sidebar-nav">
         <div className="sidebar-section-label">Main</div>
@@ -97,6 +122,7 @@ function Sidebar({ isOpen, onClose }) {
         </div>
       </div>
     </aside>
+    </>
   );
 }
 

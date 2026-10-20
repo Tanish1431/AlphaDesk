@@ -36,11 +36,10 @@ function TopBar({ toggleSidebar }) {
       <div className="dashboard-topbar-left">
         <button 
           onClick={toggleSidebar} 
-          style={{ background: "none", border: "none", cursor: "pointer", display: "flex" }}
-          className="hide-desktop"
+          className="mobile-menu-btn"
           aria-label="Toggle Menu"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -54,21 +53,21 @@ function TopBar({ toggleSidebar }) {
             {nifty.chg >= 0 ? '+' : ''}{nifty.chg.toFixed(2)} ({nifty.pct >= 0 ? '+' : ''}{nifty.pct.toFixed(2)}%)
           </span>
         </div>
-        <div className="market-index">
+        <div className="market-index hide-xs">
           <span className="index-name">SENSEX</span>
           <span className="index-value font-mono">{sensex.val.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
           <span className={`index-change ${sensex.chg >= 0 ? 'text-success' : 'text-danger'}`}>
             {sensex.chg >= 0 ? '+' : ''}{sensex.chg.toFixed(2)} ({sensex.pct >= 0 ? '+' : ''}{sensex.pct.toFixed(2)}%)
           </span>
         </div>
-        <div className="market-index">
+        <div className="market-index hide-mobile">
           <span className="index-name">NIFTY BANK</span>
           <span className="index-value font-mono">{bankNifty.val.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
           <span className={`index-change ${bankNifty.chg >= 0 ? 'text-success' : 'text-danger'}`}>
             {bankNifty.chg >= 0 ? '+' : ''}{bankNifty.chg.toFixed(2)} ({bankNifty.pct >= 0 ? '+' : ''}{bankNifty.pct.toFixed(2)}%)
           </span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginLeft: "12px", fontSize: "11px", color: "var(--color-text-muted)" }}>
+        <div className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: "6px", marginLeft: "12px", fontSize: "11px", color: "var(--color-text-muted)" }}>
           <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "var(--color-success)", display: "inline-block", boxShadow: "0 0 6px rgba(76, 175, 80, 0.6)" }}></span>
           <span>LIVE MARKET</span>
         </div>
